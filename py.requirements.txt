@@ -3,7 +3,9 @@
 # =============================================================================
 # USE: pip install -r <THIS_FILE>
 
+# -- REQUIRED BY: bin/check_cmake-presets.py (and: check_cmake-presets.sh)
 check-jsonschema >= 0.23.1
+requests
 
 # -- BUILD-SUPPORT: Normally not needed
 # HINT: Install cmake, ninja via pip package manager.
@@ -17,3 +19,7 @@ git+https://github.com/jenisys/cmake-build
 
 # -- SPELL-CHECKING:
 codespell >= 2.2.4
+
+# -- PYTHON LINTERS:
+pylint
+ruff
