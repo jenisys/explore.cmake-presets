@@ -1,0 +1,19 @@
+# =============================================================================
+# PYTHON PACKAGE REQUIREMENTS
+# =============================================================================
+# USE: pip install -r <THIS_FILE>
+
+check-jsonschema >= 0.23.1
+
+# -- BUILD-SUPPORT: Normally not needed
+# HINT: Install cmake, ninja via pip package manager.
+#  cmake
+#  ninja
+
+# -- DEVELOP SUPPORT:
+invoke >= 1.7.0
+git+https://github.com/jenisys/invoke-cleanup@v0.3.7
+git+https://github.com/jenisys/cmake-build
+
+# -- SPELL-CHECKING:
+codespell >= 2.2.4

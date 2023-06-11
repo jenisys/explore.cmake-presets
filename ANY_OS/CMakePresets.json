@@ -1,0 +1,107 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25,
+    "patch": 0
+  },
+  "buildPresets": [
+    {
+      "name": "variadic",
+      "configurePreset": "variadic",
+      "configuration": "Debug"
+    }
+  ],
+  "configurePresets": [
+    {
+      "hidden": true,
+      "name": "_setup.linux",
+      "description": "Setup Linux settings for toolchains",
+      "generator": "Ninja",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "MY_TOOLCHAIN_PREFIX": "/usr/local/opt/toolchains"
+      },
+      "environment": {
+        "MY_TOOLCHAIN_PREFIX": "/usr/local/opt/toolchains"
+      }
+    },
+    {
+      "hidden": true,
+      "name": "_setup.macOS",
+      "description": "Setup macOS settings for toolchains",
+      "generator": "Ninja",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      },
+      "cacheVariables": {
+        "MY_TOOLCHAIN_PREFIX": "/Library/Toolchains"
+      },
+      "environment": {
+        "MY_TOOLCHAIN_PREFIX": "/Library/Toolchains"
+      }
+    },
+    {
+      "hidden": true,
+      "name": "_setup.windows",
+      "description": "Setup Windows settings for MSBuild toolchain",
+      "generator": "Ninja",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "cacheVariables": {
+        "MY_TOOLCHAIN_PREFIX": "C:/toolchains"
+      },
+      "environment": {
+        "MY_TOOLCHAIN_PREFIX": "C:/toolchains"
+      }
+    },
+    {
+      "inherits": ["_setup.linux", "_setup.macOS", "_setup.windows"],
+      "name": "variadic",
+      "displayName": "variadic",
+      "description": "Use VARIADIC presets for different platform",
+      "binaryDir": "${sourceDir}/build.variadic.${hostSystemName}",
+      "condition": {
+        "type": "const",
+        "value": true
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "MY_TOOLCHAIN1": "_{MY_TOOLCHAIN_PREFIX}/bolt.toolchain.cmake"
+      },
+      "environment": {
+        "MY_TOOLCHAIN2": "$env{MY_TOOLCHAIN_PREFIX}/bolt.ENV.toolchain.cmake"
+      }
+    }
+  ],
+  "testPresets": [
+    {
+      "configurePreset": "variadic",
+      "name": "variadic"
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "variadic",
+      "steps": [
+        {
+          "name": "variadic",
+          "type": "configure"
+        },
+        {
+          "name": "variadic",
+          "type": "build"
+        }
+      ]
+    }
+  ]
+}
