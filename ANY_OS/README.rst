@@ -8,8 +8,8 @@ Inherit from multiple ``_setup.${OS}`` base-presets (needs: condition=true).
 
 SEE ALSO:
 
-* https://gitlab.kitware.com/cmake/cmake/-/issues/24976
-* https://gitlab.kitware.com/cmake/cmake/-/issues/21310  -- General problem
+* `cmake #23283: presets: Inheritance of conditional presets <https://gitlab.kitware.com/cmake/cmake/-/issues/23283>`_
+* `cmake #24976: Portable way to set filepaths in presets <https://gitlab.kitware.com/cmake/cmake/-/issues/24976>`_
 
 
 EXPLORING
